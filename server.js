@@ -137,28 +137,29 @@ async function callGemini(message, history = []) {
         }))
     : [];
 
-  const payload = {
-    systemInstruction: {
-      parts: [{ text: systemInstruction }]
-    },
-    contents: [
-      ...formattedHistory,
-      {
-        role: 'user',
-        parts: [{ text: message }]
-      }
-    ],
-    generationConfig: {
-      temperature: 0.3,
-      thinkingConfig: { thinkingBudget: 0 },
-      maxOutputTokens: 450
-    }
-  };
-
-  let lastError = null;
-
   for (const model of CANDIDATE_MODELS) {
     try {
+      const payload = {
+        systemInstruction: {
+          parts: [{ text: systemInstruction }]
+        },
+        contents: [
+          ...formattedHistory,
+          {
+            role: 'user',
+            parts: [{ text: message }]
+          }
+        ],
+        generationConfig: {
+          temperature: 0.3,
+          maxOutputTokens: 450
+        }
+      };
+
+      if ((model.includes('3.5-flash') && !model.includes('lite')) || model.includes('3.8-flash')) {
+        payload.generationConfig.thinkingConfig = { thinkingBudget: 0 };
+      }
+
       const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${GEMINI_API_KEY}`;
       const response = await fetch(url, {
         method: 'POST',
@@ -273,6 +274,9 @@ app.get('/api/status', (req, res) => {
 });
 
 app.get('*', (req, res) => {
+  if (req.path.includes('.')) {
+    return res.status(404).end();
+  }
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
