@@ -1,0 +1,13 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "npm install": true,
+        "/^cd /Users/lony/Desktop/mukhtar_sh-main && node --check server\\.js && node - <<'NODE'\nasync function fetchWikipediaContext\\(\\) \\{\n  const titles = \\['Мұхтар_Шаханов', 'Мұхтар Шаханов', 'Шаханов, Мұхтар'\\];\n  for \\(const title of titles\\) \\{\n    const pageUrl = `https://kk\\.wikipedia\\.org/w/api\\.php\\?action=query&prop=extracts&exintro=1&explaintext=1&titles=\\$\\{encodeURIComponent\\(title\\)\\}&redirects=1&format=json&origin=\\*`;\n    const pageResponse = await fetch\\(pageUrl\\);\n    const pageData = await pageResponse\\.json\\(\\);\n    const page = Object\\.values\\(pageData\\?\\.query\\?\\.pages \\|\\| \\{\\}\\)\\[0\\];\n    const extract = page\\?\\.extract \\|\\| '';\n    if \\(extract && extract\\.trim\\(\\)\\.length > 150\\) \\{\n      return extract\\.replace\\(/\\\\s\\+/g, ' '\\)\\.trim\\(\\)\\.slice\\(0, 1000\\);\n    \\}\n  \\}\n  return 'no data';\n\\}\nfetchWikipediaContext\\(\\)\\.then\\(text => \\{\n  console\\.log\\('HAS_BIRTH_YEAR:', /1942/\\.test\\(text\\)\\);\n  console\\.log\\('HAS_BIRTH_DATE:', /2 шілде 1942/\\.test\\(text\\)\\);\n  console\\.log\\('HAS_DEATH_DATE:', /19 сәуір 2026\\|19 қыркүйекте\\|2026/\\.test\\(text\\)\\);\n  console\\.log\\(text\\.slice\\(0, 220\\)\\);\n\\}\\);\nNODE$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^cd /Users/lony/Desktop/mukhtar_sh-main && node --check server\\.js && node - <<'NODE'\nasync function fetchWikipediaContext\\(\\) \\{\n  const titles = \\['Мұхтар_Шаханов', 'Мұхтар Шаханов', 'Шаханов, Мұхтар'\\];\n  for \\(const title of titles\\) \\{\n    const pageUrl = `https://kk\\.wikipedia\\.org/w/api\\.php\\?action=query&prop=extracts&exintro=1&explaintext=1&titles=\\$\\{encodeURIComponent\\(title\\)\\}&redirects=1&format=json&origin=\\*`;\n    const pageResponse = await fetch\\(pageUrl\\);\n    const pageData = await pageResponse\\.json\\(\\);\n    const page = Object\\.values\\(pageData\\?\\.query\\?\\.pages \\|\\| \\{\\}\\)\\[0\\];\n    const extract = page\\?\\.extract \\|\\| '';\n    if \\(extract && extract\\.trim\\(\\)\\.length > 150\\) \\{\n      return extract\\.replace\\(/\\\\s\\+/g, ' '\\)\\.trim\\(\\)\\.slice\\(0, 1000\\);\n    \\}\n  \\}\n  return 'no data';\n\\}\nfetchWikipediaContext\\(\\)\\.then\\(text => \\{\n  console\\.log\\('HAS_BIRTH_YEAR:', /1942/\\.test\\(text\\)\\);\n  console\\.log\\('HAS_BIRTH_DATE:', /2 шілде 1942/\\.test\\(text\\)\\);\n  console\\.log\\('HAS_DEATH_DATE:', /19 сәуір 2026/\\.test\\(text\\)\\);\n  console\\.log\\(text\\.slice\\(0, 200\\)\\);\n\\}\\);\nNODE$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}
